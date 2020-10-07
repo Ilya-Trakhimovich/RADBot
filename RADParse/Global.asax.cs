@@ -1,3 +1,4 @@
+using RADParse.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace RADParse
     {
         protected void Application_Start()
         {
+            AutofacConfig.ConfigureContainer();
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
