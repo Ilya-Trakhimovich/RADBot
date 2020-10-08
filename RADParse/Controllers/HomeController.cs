@@ -24,5 +24,10 @@ namespace RADParse.Controllers
 
             return View(streets);
         }
+
+        public void AddDefects()
+        { 
+        
+        }
     }
 }
