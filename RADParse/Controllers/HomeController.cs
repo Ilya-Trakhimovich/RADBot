@@ -1,6 +1,7 @@
 ﻿using Data.Abstract.Repositories;
 using Data.Concrete.Repositories;
 using Data.Entities;
+using RADParse.Infrastructure.Defects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,16 @@ namespace RADParse.Controllers
         }
 
         public void AddDefects()
-        { 
-        
+        {
+            var defect = new DefectsAddingMechanism();
+            var streets = _repository.StreetRoads.ToList();
+
+            defect.EnterToSystem();
+
+            for (var i = 0; i < streets.Count; i++)
+            {
+                defect.AddDefectsToRoads(streets[i]);
+            }
         }
     }
 }

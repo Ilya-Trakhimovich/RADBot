@@ -146,12 +146,15 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Enum\DefectGroups\DefectGroupsEnum.cs" />
+    <Compile Include="Enum\Defects\DefectsEnum.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\AutofacConfig.cs" />
     <Compile Include="Infrastructure\Defects\DefectsAddingMechanism.cs" />
     <Compile Include="Infrastructure\Defects\LogicForAddDefects.cs" />
+    <Compile Include="Infrastructure\Helper\RandomNumbers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
