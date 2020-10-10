@@ -13,10 +13,11 @@ namespace RADParse.Controllers
     public class HomeController : Controller
     {
         private readonly IStreetRoadRepository _repository;
-
+        private readonly List<StreetRoad> _streets;
         public HomeController(IStreetRoadRepository repo)
         {
             _repository = repo;
+            _streets = _repository.StreetRoads.ToList();
         }
 
         public ViewResult Index()
@@ -27,15 +28,14 @@ namespace RADParse.Controllers
         }
 
         public void AddDefects()
-        {
-            var defect = new DefectsAddingMechanism();
-            var streets = _repository.StreetRoads.ToList();
-
-            defect.EnterToSystem();
-
-            for (var i = 0; i < streets.Count; i++)
+        {          
+            
+            for (var i = 0; i < _streets.Count; i++)
             {
-                defect.AddDefectsToRoads(streets[i]);
+                var defect = new DefectsAddingMechanism();
+                defect.EnterToSystem();
+                defect.AddDefectsToRoads(_streets[i]);
+                defect.CloseBrowser();
             }
         }
     }
