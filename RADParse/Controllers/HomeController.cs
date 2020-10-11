@@ -28,8 +28,7 @@ namespace RADParse.Controllers
         }
 
         public void AddDefects()
-        {          
-            
+        {       
             for (var i = 0; i < _streets.Count; i++)
             {
                 var defect = new DefectsAddingMechanism();

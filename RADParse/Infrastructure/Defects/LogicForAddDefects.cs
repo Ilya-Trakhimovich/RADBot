@@ -93,10 +93,5 @@ namespace RADParse.Infrastructure.Defects
 
             return _locations;
         }
-
-        private void SelectDefect()
-        { 
-        
-        }
     }
 }

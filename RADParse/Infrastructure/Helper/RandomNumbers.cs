@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace RADParse.Infrastructure.Helper
 {
@@ -14,16 +12,17 @@ namespace RADParse.Infrastructure.Helper
             _listOfDef = new List<int>() { 18, 19, 20, 21, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 39, 40, 41, 43, 44, 45, 47, 48, 49, 51, 54, 55, 56, 57, 58 };
         }
 
-        public List<int> GetListOfRndDefects(int count) // TODO: out of range exception
+        public List<int> GetListOfRndDefects(int count)
         {
             List<int> rndListOfDefForSection = new List<int>();
+            var rndDef = new Random();
 
             for (var i = 0; i < count; i++)
             {
-                var rndDef = new Random().Next(0, 31);
+                var index = rndDef.Next(30 - i);
 
-                rndListOfDefForSection.Add(_listOfDef[rndDef]);
-                _listOfDef.Remove(_listOfDef[rndDef]);
+                rndListOfDefForSection.Add(_listOfDef[index]);
+                _listOfDef.Remove(_listOfDef[index]);
             }
 
             return rndListOfDefForSection;
