@@ -7,7 +7,7 @@ namespace RADParse.Infrastructure.Defects
 {
     public class LogicForAddDefects
     {
-        private List<int> _locations;
+        private readonly List<int> _locations;
 
         public LogicForAddDefects()
         {
@@ -19,75 +19,97 @@ namespace RADParse.Infrastructure.Defects
         /// </summary>
         /// <param name="length"></param>
         /// <returns></returns>
-        public List<int> GetSections(int length)
+        public List<int> GetSections(int length, int start)
         {
             if (length <= 50)
             {
-                var location = length / 2;
+                var proportion = length / 2;
+                var location = start + proportion;
 
                 _locations.Add(location);
             }
             else if (length <= 150 & length > 50)
             {
-                var location = length / 3;
+                var proportion = length / 3;
+                var location = start + proportion;
 
-                for (var i = 1; i < 4; i++)
+                for (var i = 0; i < 3; i++)
                 {
-                    _locations.Add(location * i);
+                    _locations.Add(location);
+
+                    location += proportion;                    
                 }
             }
             else if (length <= 250 & length >150)
             {
-                var location = length / 4;
+                var proportion = length / 4;
+                var location = start + proportion;
 
-                for (var i = 1; i < 5; i++)
+                for (var i = 0; i < 4; i++)
                 {
-                    _locations.Add(location * i);
+                    _locations.Add(location);
+
+                    location += proportion;                    
                 }
             }
             else if (length <= 500 & length > 250)
             {
-                var location = length / 5;
+                var proportion = length / 5;
+                var location = start + proportion;
 
-                for (var i = 1; i < 6; i++)
+                for (var i = 0; i < 5; i++)
                 {
-                    _locations.Add(location * i);
+                    _locations.Add(location);
+
+                    location += proportion;                    
                 }
             }
             else if (length <= 1000 & length > 500)
             {
-                var location = length / 6;
+                var proportion = length / 6;
+                var location = start + proportion;
 
-                for (var i = 1; i < 7; i++)
+                for (var i = 0; i < 6; i++)
                 {
-                    _locations.Add(location * i);
+                    _locations.Add(location);
+
+                    location += proportion;                    
                 }
             }
             else if (length <= 2000 & length > 1000)
             {
-                var location = length / 8;
+                var proportion = length / 8;
+                var location = start + proportion;
 
-                for (var i = 1; i < 9; i++)
+                for (var i = 0; i < 8; i++)
                 {
-                    _locations.Add(location * i);
+                    _locations.Add(location);
+
+                    location += proportion;                    
                 }
             }
             else if (length <= 4000 & length > 2000)
             {
-                var location = length / 15;
+                var proportion = length / 15;
+                var location = start + proportion;
 
-                for (var i = 1; i < 16; i++)
+                for (var i = 0; i < 15; i++)
                 {
-                    _locations.Add(location * i);
+                    _locations.Add(location);
+
+                    location += proportion;                    
                 }
             }
             else if (length > 4000)
             {
-                var location = length / 25;
+                var proportion = length / 25;
+                var location = start + proportion;
 
-                for (var i = 1; i < 26; i++)
+                for (var i = 0; i < 25; i++)
                 {
-                    _locations.Add(location * i);
+                    _locations.Add(location);
+
+                    location += proportion;                    
                 }
             }
 

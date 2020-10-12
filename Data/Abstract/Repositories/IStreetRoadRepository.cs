@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data.Abstract.Repositories
 {
-    public interface IStreetRoadRepository
+    public interface IStreetRoadRepository : IDisposable
     {
         IEnumerable<StreetRoad> StreetRoads { get; }
         void AddStreet(StreetRoad streetRoad);

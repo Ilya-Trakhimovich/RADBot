@@ -14,6 +14,7 @@ namespace RADParse.Controllers
     {
         private readonly IStreetRoadRepository _repository;
         private readonly List<StreetRoad> _streets;
+
         public HomeController(IStreetRoadRepository repo)
         {
             _repository = repo;
@@ -28,12 +29,12 @@ namespace RADParse.Controllers
         }
 
         public void AddDefects()
-        {       
+        {
             for (var i = 0; i < _streets.Count; i++)
             {
                 var defect = new DefectsAddingMechanism();
                 defect.EnterToSystem();
-                defect.AddDefectsToRoads(_streets[i]);
+                defect.AddDefectsToRoads(_streets[_streets.Count - 1 - i]);
                 defect.CloseBrowser();
             }
         }

@@ -23,6 +23,9 @@ namespace StreetConsole.Data.EF
             _repo.AddStreet(street);
         }
 
-        public void Dispose() { }
+        public void Dispose() 
+        {
+            _repo.Dispose();
+        }
     }
 }
