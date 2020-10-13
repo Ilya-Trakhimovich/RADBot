@@ -1,0 +1,28 @@
+﻿@model List<Data.Entities.StreetRoad>
+
+<div class="container" id="searchResults">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">Length</th>
+                <th scope="col" class="text-center">Begin</th>
+                <th scope="col" class="text-center">End</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var street in Model)
+            {
+                <tr>
+                    <th scope="row">@street.Id</th>
+                    <td class="text-center">@street.StreetName</td>
+                    <td class="text-center">@street.StreetLenght</td>
+                    <td class="text-center">@street.BeginOfStreet</td>
+                    <td class="text-center">@street.EndOfStreet</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

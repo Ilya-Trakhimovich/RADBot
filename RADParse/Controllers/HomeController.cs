@@ -38,5 +38,19 @@ namespace RADParse.Controllers
                 defect.CloseBrowser();
             }
         }
+
+        public ActionResult SearchStreet(string streetName)
+        {
+            if (!string.IsNullOrWhiteSpace(streetName))
+            {
+                var streets = _streets.Where(s => s.StreetName.ToLower().Contains(streetName.ToLower())).ToList();
+
+                return PartialView(streets);
+            }
+            else
+            {
+                return HttpNotFound($"The {streetName} not found");
+            }
+        }
     }
 }
