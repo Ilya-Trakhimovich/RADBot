@@ -11,5 +11,6 @@ namespace Data.Abstract.Repositories
     {
         IEnumerable<StreetRoad> StreetRoads { get; }
         void AddStreet(StreetRoad streetRoad);
+        void SaveIsInspected(StreetRoad street);
     }
 }

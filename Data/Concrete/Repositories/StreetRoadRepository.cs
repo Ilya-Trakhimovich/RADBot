@@ -3,6 +3,7 @@ using Data.DBContext;
 using Data.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,12 @@ namespace Data.Concrete.Repositories
         public void AddStreet(StreetRoad streetRoad)
         {
             _context.StreetRoads.Add(streetRoad);
+            _context.SaveChanges();
+        }
+
+        public void SaveIsInspected(StreetRoad street)
+        {
+            _context.StreetRoads.AddOrUpdate(street);
             _context.SaveChanges();
         }
 

@@ -56,13 +56,29 @@
     <Compile Include="DBContext\StreetContext.cs" />
     <Compile Include="Entities\Defect.cs" />
     <Compile Include="Entities\StreetRoad.cs" />
+    <Compile Include="Migrations\202010071333425_InitialCreate.cs" />
+    <Compile Include="Migrations\202010071333425_InitialCreate.designer.cs">
+      <DependentUpon>202010071333425_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202010141730528_AddisInspectedMigration.cs" />
+    <Compile Include="Migrations\202010141730528_AddisInspectedMigration.designer.cs">
+      <DependentUpon>202010141730528_AddisInspectedMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202010071333425_InitialCreate.resx">
+      <DependentUpon>202010071333425_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010141730528_AddisInspectedMigration.resx">
+      <DependentUpon>202010141730528_AddisInspectedMigration.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

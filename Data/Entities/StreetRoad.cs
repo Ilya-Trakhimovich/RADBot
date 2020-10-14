@@ -16,5 +16,6 @@ namespace Data.Entities
         public int StreetLenght { get; set; }
         public int BeginOfStreet { get; set; }
         public int EndOfStreet { get; set; }
+        public bool isInspected { get; set; }
     }
 }

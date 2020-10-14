@@ -34,7 +34,8 @@ namespace RADParse.Controllers
             {
                 var defect = new DefectsAddingMechanism();
                 defect.EnterToSystem();
-                defect.AddDefectsToRoads(_streets[_streets.Count - 1 - i]);
+                defect.AddDefectsToRoads(_streets[i]);
+                _repository.SaveIsInspected(_streets[i]);
                 defect.CloseBrowser();
             }
         }
@@ -49,7 +50,7 @@ namespace RADParse.Controllers
             }
             else
             {
-                return HttpNotFound($"The {streetName} not found");
+                return PartialView("SearchStreetIsNull");
             }
         }
     }

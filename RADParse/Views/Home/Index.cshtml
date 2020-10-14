@@ -11,6 +11,8 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <title>Streets</title>
 </head>
 <body>
@@ -18,12 +20,11 @@
         <div class="col-md-4">
             @Html.ActionLink("Start add defects", "AddDefects", "Home", null, new { @class = "btn btn-block btn-danger btn-lg" })
         </div>
-        <div class="col-md-6">
-            @using (Ajax.BeginForm("SearchStreet", new AjaxOptions { UpdateTargetId = "result" }))
+        <div class="col-md-2">
+            @using (Ajax.BeginForm("SearchStreet", null, new AjaxOptions { UpdateTargetId = "result" }, new { id = "streetInfo" }))
             {
                 <form class="form-inline">
-                    <input class="form-inline mr-sm-2" type="search" placeholder="Enter street name" aria-label="Search" name="streetName">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <label>Search street: <input class="form-inline mr-sm-2" type="search" placeholder="Enter street name" aria-label="Search" name="streetName" onkeypress="$('#streetInfo').trigger('submit')" }></label>
                 </form>
             }
         </div>
@@ -55,7 +56,5 @@
             </tbody>
         </table>
     </div>
-    <script src="~/Scripts/jquery-3.5.1.js"></script>
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 </body>
 </html>
