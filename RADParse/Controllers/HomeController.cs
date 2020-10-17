@@ -24,8 +24,29 @@ namespace RADParse.Controllers
         public ViewResult Index()
         {
             var streets = _repository.StreetRoads.ToList();
+            ViewBag.Category = new List<string> { "All", "Inspected", "Uninspected" };
 
             return View(streets);
+        }
+
+        public ActionResult SortStreets(string category)
+        {
+            var streets = _repository.StreetRoads.ToList();
+
+            if (category == "All")
+            {
+                streets = _repository.StreetRoads.ToList();
+            }
+            else if (category == "Inspected")
+            {
+                streets = _repository.StreetRoads.Where(s => s.isInspected == true).ToList();
+            }
+            else if (category == "Uninspected")
+            {
+                streets = _repository.StreetRoads.Where(s => s.isInspected == false).ToList();
+            }
+
+            return PartialView("SortedStreets", streets);
         }
 
         public void AddDefects()
@@ -33,6 +54,7 @@ namespace RADParse.Controllers
             for (var i = 0; i < _streets.Count; i++)
             {
                 var defect = new DefectsAddingMechanism();
+
                 defect.EnterToSystem();
                 defect.AddDefectsToRoads(_streets[i]);
                 _repository.SaveIsInspected(_streets[i]);

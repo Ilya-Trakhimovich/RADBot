@@ -16,45 +16,66 @@
     <title>Streets</title>
 </head>
 <body>
-    <div class="row justify-content-md-center">
-        <div class="col-md-4">
-            @Html.ActionLink("Start add defects", "AddDefects", "Home", null, new { @class = "btn btn-block btn-danger btn-lg" })
+    <div class="container container-fluid">
+        <div class="row justify-content-md-center" id="addDef">
+            <div class="col-md-4">
+                @Html.ActionLink("Start add defects", "AddDefects", "Home", null, new { @class = "btn btn-block btn-danger btn-lg", @id = "addDef"})
+            </div>
         </div>
-        <div class="col-md-2">
-            @using (Ajax.BeginForm("SearchStreet", null, new AjaxOptions { UpdateTargetId = "result" }, new { id = "streetInfo" }))
+        <div class="row justify-content-md-center">
+            @using (Ajax.BeginForm("SearchStreet", null, new AjaxOptions { UpdateTargetId = "searchResult" }, new { id = "streetInfo" }))
             {
                 <form class="form-inline">
-                    <label>Search street: <input class="form-inline mr-sm-2" type="search" placeholder="Enter street name" aria-label="Search" name="streetName" onkeypress="$('#streetInfo').trigger('submit')" }></label>
+                    <label>
+                        Search street: <input class="form-inline mr-sm-2" type="search" placeholder="Enter street name"
+                                              aria-label="Search" name="streetName"
+                                              onkeyup="$('#streetInfo').trigger('submit')" }>
+                    </label>
                 </form>
             }
         </div>
-    </div>
-    <div id="result"></div>
-    <br />
-    <div class="container">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col" class="text-center">Name</th>
-                    <th scope="col" class="text-center">Length</th>
-                    <th scope="col" class="text-center">Begin</th>
-                    <th scope="col" class="text-center">End</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var element in Model)
+        <div class="row justify-content-md-center">
+            @using (Ajax.BeginForm("SortStreets", null, new AjaxOptions { UpdateTargetId = "sortResult" }, new { id = "sortStreet" }))
+            {
+                var selected = false;
+
+                foreach (var str in ViewBag.Category)
                 {
-                    <tr>
-                        <th scope="row">@element.Id</th>
-                        <td class="text-center">@element.StreetName</td>
-                        <td class="text-center">@element.StreetLenght</td>
-                        <td class="text-center">@element.BeginOfStreet</td>
-                        <td class="text-center">@element.EndOfStreet</td>
-                    </tr>
+                    if ((string)str == "All")
+                    {
+                        selected = true;
+                    }
+                    else
+                    {
+                        selected = false;
+                    }
+
+                    <div class="form-check form-check-inline">
+                        @Html.RadioButton("category", (string)str, selected, new { onchange = "ChangeCat()", @class = "form-check-input" })
+                        @Html.Label((string)str, new { @class = "form-check-label" })
+                    </div>
                 }
-            </tbody>
-        </table>
+            }
+        </div>
+        <div id="searchResult"></div>
+        <br />
+        <div id="sort"></div>
+        <br />
+        <div id="sortResult"></div>
     </div>
+    <script type="text/javascript">
+        $('#addDef').css('visibility', 'hidden');
+
+        $(document).ready(function () {
+
+            ChangeCat();            
+
+            //setTimeout('window.location.reload();', 5000);
+        });
+
+        function ChangeCat() {
+            $('#sortStreet').trigger('submit');
+        }
+    </script>
 </body>
 </html>

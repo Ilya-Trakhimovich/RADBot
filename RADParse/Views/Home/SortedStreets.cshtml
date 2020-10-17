@@ -1,6 +1,7 @@
-﻿@model List<Data.Entities.StreetRoad>
+﻿@using Data.Entities
+@model List<StreetRoad>
 
-<div class="container" id="searchResults">
+<div class="container">
     <table class="table">
         <thead>
             <tr>
@@ -14,7 +15,7 @@
         <tbody>
             @foreach (var element in Model)
             {
-                <tr id="tr" class="alert alert-success" role="alert">
+                <tr>
                     <th scope="row">@element.Id</th>
                     <td class="text-center">@element.StreetName</td>
                     <td class="text-center">@element.StreetLenght</td>
@@ -25,4 +26,3 @@
         </tbody>
     </table>
 </div>
-
