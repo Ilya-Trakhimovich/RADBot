@@ -44,25 +44,35 @@ namespace RADParse.Controllers
             else if (category == "Uninspected")
             {
                 streets = _repository.StreetRoads.Where(s => s.isInspected == false).ToList();
+
+               return PartialView("SortedStreetsUninspected", streets);
             }
 
             return PartialView("SortedStreets", streets);
         }
 
-        public void AddDefects()
+        [HttpPost]
+        public void AddDefects(string[] streetsParam)
         {
-            for (var i = 0; i < _streets.Count; i++)
+            List<StreetRoad> uninspectedStreets = new List<StreetRoad>();
+
+            foreach (var str in streetsParam)
+            {
+                uninspectedStreets.Add(_repository.StreetRoads.Where(s => s.Id == int.Parse(str)).FirstOrDefault());
+            }       
+
+            for (var i = 0; i < uninspectedStreets.Count; i++)
             {
                 var defect = new DefectsAddingMechanism();
 
                 defect.EnterToSystem();
-                defect.AddDefectsToRoads(_streets[i]);
-                _repository.SaveIsInspected(_streets[i]);
+                defect.AddDefectsToRoads(uninspectedStreets[i]);
+                _repository.SaveIsInspected(uninspectedStreets[i]);
                 defect.CloseBrowser();
             }
         }
 
-        public ActionResult SearchStreet(string streetName)
+        public ActionResult SearchStreet(string streetName, List<StreetRoad> strs)
         {
             if (!string.IsNullOrWhiteSpace(streetName))
             {

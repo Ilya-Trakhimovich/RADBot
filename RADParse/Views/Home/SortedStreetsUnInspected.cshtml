@@ -1,0 +1,49 @@
+﻿@using Data.Entities
+@model List<StreetRoad>
+
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <input type="submit" name="selEl" value="Add defects" class="btn btn-block btn-danger" formmethod="post" formaction="Home/AddDefects" />
+        <br />
+        <div id="searchResult"></div>
+        <br />
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col"><input type="checkbox" name="selAll" id="selAll" value="Select all" /> </th>
+                    <th scope="col">#</th>
+                    <th scope="col" class="text-center">Name</th>
+                    <th scope="col" class="text-center">Length</th>
+                    <th scope="col" class="text-center">Begin</th>
+                    <th scope="col" class="text-center">End</th>
+                </tr>
+            </thead>
+            <tbody id="select">
+                @foreach (var element in Model)
+                {
+                    <tr>
+                        <th scope="row"><input type="checkbox" name="streetsParam" id="checkEl" value="@element.Id" /> </th>
+                        <th scope="row">@element.Id</th>
+                        <td class="text-center">@element.StreetName</td>
+                        <td class="text-center">@element.StreetLenght</td>
+                        <td class="text-center">@element.BeginOfStreet</td>
+                        <td class="text-center">@element.EndOfStreet</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#selAll').change(function () {
+                if ($(this).is(':checked')) {
+                    $('#select input:checkbox').prop('checked', true);
+                }
+                else {
+                    $('#select input:checkbox').prop('checked', false);
+                }
+            });
+        });
+    </script>
+</div>

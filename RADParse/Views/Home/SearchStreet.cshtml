@@ -2,7 +2,7 @@
 
 <div class="container" id="searchResults">
     <table class="table">
-        <thead>
+        <thead class="thead-light">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col" class="text-center">Name</th>
@@ -14,7 +14,7 @@
         <tbody>
             @foreach (var element in Model)
             {
-                <tr id="tr" class="alert alert-success" role="alert">
+                <tr>
                     <th scope="row">@element.Id</th>
                     <td class="text-center">@element.StreetName</td>
                     <td class="text-center">@element.StreetLenght</td>

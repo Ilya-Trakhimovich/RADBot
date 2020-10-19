@@ -274,6 +274,7 @@
     <Content Include="Views\Home\SearchStreet.cshtml" />
     <Content Include="Views\Home\SearchStreetIsNull.cshtml" />
     <Content Include="Views\Home\SortedStreets.cshtml" />
+    <Content Include="Views\Home\SortedStreetsUnInspected.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
