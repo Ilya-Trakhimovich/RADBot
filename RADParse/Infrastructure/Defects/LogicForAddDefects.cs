@@ -37,7 +37,7 @@ namespace RADParse.Infrastructure.Defects
                 {
                     _locations.Add(location);
 
-                    location += proportion;                    
+                    location += (proportion - 1);                    
                 }
             }
             else if (length <= 250 & length >150)
@@ -49,7 +49,7 @@ namespace RADParse.Infrastructure.Defects
                 {
                     _locations.Add(location);
 
-                    location += proportion;                    
+                    location += (proportion - 1);
                 }
             }
             else if (length <= 500 & length > 250)
@@ -61,7 +61,7 @@ namespace RADParse.Infrastructure.Defects
                 {
                     _locations.Add(location);
 
-                    location += proportion;                    
+                    location += (proportion - 1);
                 }
             }
             else if (length <= 1000 & length > 500)
@@ -73,7 +73,7 @@ namespace RADParse.Infrastructure.Defects
                 {
                     _locations.Add(location);
 
-                    location += proportion;                    
+                    location += (proportion - 1);
                 }
             }
             else if (length <= 2000 & length > 1000)
@@ -85,7 +85,7 @@ namespace RADParse.Infrastructure.Defects
                 {
                     _locations.Add(location);
 
-                    location += proportion;                    
+                    location += (proportion - 1);
                 }
             }
             else if (length <= 4000 & length > 2000)
@@ -97,7 +97,7 @@ namespace RADParse.Infrastructure.Defects
                 {
                     _locations.Add(location);
 
-                    location += proportion;                    
+                    location += (proportion - 1);
                 }
             }
             else if (length > 4000)
@@ -109,7 +109,7 @@ namespace RADParse.Infrastructure.Defects
                 {
                     _locations.Add(location);
 
-                    location += proportion;                    
+                    location += (proportion - 1);
                 }
             }
 

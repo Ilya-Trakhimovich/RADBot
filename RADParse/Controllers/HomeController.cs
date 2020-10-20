@@ -14,6 +14,7 @@ namespace RADParse.Controllers
     {
         private readonly IStreetRoadRepository _repository;
         private readonly List<StreetRoad> _streets;
+        private string _category;
 
         public HomeController(IStreetRoadRepository repo)
         {
@@ -35,17 +36,20 @@ namespace RADParse.Controllers
 
             if (category == "All")
             {
+                _category = category;
                 streets = _repository.StreetRoads.ToList();
             }
             else if (category == "Inspected")
             {
+                _category = category;
                 streets = _repository.StreetRoads.Where(s => s.isInspected == true).ToList();
             }
             else if (category == "Uninspected")
             {
+                _category = category;
                 streets = _repository.StreetRoads.Where(s => s.isInspected == false).ToList();
 
-               return PartialView("SortedStreetsUninspected", streets);
+                return PartialView("SortedStreetsUninspected", streets);
             }
 
             return PartialView("SortedStreets", streets);
@@ -54,12 +58,17 @@ namespace RADParse.Controllers
         [HttpPost]
         public void AddDefects(string[] streetsParam)
         {
+            if (streetsParam.Length <= 0)
+            {
+                throw new Exception();
+            }
+
             List<StreetRoad> uninspectedStreets = new List<StreetRoad>();
 
             foreach (var str in streetsParam)
             {
                 uninspectedStreets.Add(_repository.StreetRoads.Where(s => s.Id == int.Parse(str)).FirstOrDefault());
-            }       
+            }
 
             for (var i = 0; i < uninspectedStreets.Count; i++)
             {
@@ -72,11 +81,24 @@ namespace RADParse.Controllers
             }
         }
 
-        public ActionResult SearchStreet(string streetName, List<StreetRoad> strs)
+        public ActionResult SearchStreet(string streetName, string cat = "All")
         {
+            var streets = new List<StreetRoad>();
+
             if (!string.IsNullOrWhiteSpace(streetName))
             {
-                var streets = _streets.Where(s => s.StreetName.ToLower().Contains(streetName.ToLower())).ToList();
+                if (cat == "All")
+                {
+                    streets = _streets.Where(s => s.StreetName.ToLower().Contains(streetName.ToLower())).ToList();
+                }
+                else if (cat == "Inspected")
+                {
+
+                }
+                else if (cat == "Uninspected")
+                {
+
+                }
 
                 return PartialView(streets);
             }

@@ -4,7 +4,7 @@
 <div class="container">
     @using (Html.BeginForm())
     {
-        <input type="submit" name="selEl" value="Add defects" class="btn btn-block btn-danger" formmethod="post" formaction="Home/AddDefects" />
+        <input type="submit" id="btnAdd" value="Add defects" class="btn btn-block btn-danger" disabled="disabled" formmethod="post" formaction="Home/AddDefects" />
         <br />
         <div id="searchResult"></div>
         <br />
@@ -44,6 +44,22 @@
                     $('#select input:checkbox').prop('checked', false);
                 }
             });
+        });
+
+        $('#selAll').click(function () {
+            if ($(this).is(':checked')) {
+                $('#btnAdd').removeAttr('disabled');
+            } else {
+                $('#btnAdd').attr('disabled', 'disabled');
+            }
+        });
+
+        $('#select input:checkbox').click(function () {
+            if ($(this).is(':checked')) {
+                $('#btnAdd').removeAttr('disabled');
+            } else {
+                $('#btnAdd').attr('disabled', 'disabled');
+            }
         });
     </script>
 </div>
