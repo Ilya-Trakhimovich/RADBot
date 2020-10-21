@@ -30,17 +30,14 @@
         $(document).ready(function () {
             ChangeCategory();
 
-            @*$('#streetInfo').keyup(function (e) {
+            $('#streetInfo').keyup(function (e) {
                 e.preventDefault();
-                var streetName = $('#inpSymbol').val();
-                var radioValue = $('input[id=]:checked').val();
-                streetName = encodeURIComponent(streetName);
-                radioValue = encodeURIComponent(radioValue);
+                var streetName = $('input[name="streetName"]').val();
+                var radioValue = $('input[name="category"]:checked').val();
                 console.log(streetName);
                 console.log(radioValue);
-                $('#searchResult').load('@Url.Action("SearchStreet", "Home")?streetName=' + name + '&cat=' + radioValue);
-
-            });*@
+                $('#searchResult').load('@Url.Action("SearchStreet", "Home")?streetName=' + streetName + '&cat=' + radioValue);
+            });
         });
 
         function ChangeCategory() {

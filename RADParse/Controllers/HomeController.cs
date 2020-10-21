@@ -81,7 +81,8 @@ namespace RADParse.Controllers
             }
         }
 
-        public ActionResult SearchStreet(string streetName, string cat = "All")
+        [HttpGet]
+        public ActionResult SearchStreet(string streetName, string cat)
         {
             var streets = new List<StreetRoad>();
 
@@ -93,11 +94,11 @@ namespace RADParse.Controllers
                 }
                 else if (cat == "Inspected")
                 {
-
+                    streets = _streets.Where(s => s.isInspected == true).Where(t => t.StreetName.ToLower().Contains(streetName.ToLower())).ToList();
                 }
                 else if (cat == "Uninspected")
                 {
-
+                    streets = _streets.Where(s => s.isInspected == false).Where(t => t.StreetName.ToLower().Contains(streetName.ToLower())).ToList();
                 }
 
                 return PartialView(streets);

@@ -31,7 +31,6 @@
                            onchange = "ChangeCategory()",
                            @class = "form-check-input",
                            id = "radVal",
-                           name = "radName",
                            value = $"{ViewBag.Category}"
                     })
                     @Html.Label((string)category, new { @class = "form-check-label" })
@@ -44,8 +43,7 @@
         {
             <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Enter street"
-                       aria-label="Search" name="streetName" id="inpSymbol"
-                       onkeyup="$('#streetInfo').trigger('submit')"}>
+                       aria-label="Search" name="streetName" id="inpSymbol" >
             </form>
         }
     }
