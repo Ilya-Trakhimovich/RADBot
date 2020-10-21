@@ -1,3 +1,3 @@
 ﻿UPDATE StreetRoads
-SET isInspected = 'true'
-WHERE isInspected = 'false'
+SET isInspected = 1
+WHERE isInspected = 0
